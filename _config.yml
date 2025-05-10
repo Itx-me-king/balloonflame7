@@ -1,0 +1,15 @@
+title: Balloonflame7
+name: Balloonflame7
+description: >-
+  I specialize in creating multi-platform mobile app solutions using Flutter.
+  I deliver custom mobile apps that run smoothly and look great.
+
+baseurl: "/balloonflame7."  # Ensure this matches your repository name
+url: "https://itx-me-king.github.io"
+
+theme: null  # No theme since you're using custom HTML
+
+# Plugins (optional – include only if you're using them)
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
