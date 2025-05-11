@@ -1,4 +1,4 @@
-# IT-Company-Website
+# Balloonflame7 Website
 
 ## Overview
 
@@ -6,8 +6,7 @@ The project “IT Company Website” is a responsive website made using HTML, CS
 
 ## Website Link
 
-Go check this website!!
-https://priyansh42.github.io/IT-Company-Website/
+[[Github](https://Itx-me-king.github.io/balloonflame7./)]
 
 ##
 
