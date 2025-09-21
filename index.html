@@ -2,420 +2,955 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="google-site-verification" content="5bX3IR3iJ1jO1ikwx8EjFWDgFqK3FJmQ6YSKNfZSoMY" />
-    <title>Balloonflame7</title>
-    <link rel="stylesheet" href="./css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <link rel="icon" href="./images/bf7-modified.png">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-    <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="lib/ionicons/css/ionicons.min.css" rel="stylesheet">
-    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-    <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
-    <link href="https://fonts.cdnfonts.com/css/zerpixl-volt" rel="stylesheet">
-    <script src="./js/main.js"></script>
+    <title>Jatin Sharma - Portfolio</title>
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👨‍💻</text></svg>">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
+            overflow-x: hidden;
+        }
+        
+        .hero-bg {
+            background: radial-gradient(circle at top right, rgba(255,255,255,0.8) 0%, rgba(240,245,250,0.9) 100%);
+        }
+        
+        .section-bg {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .section-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, rgba(255,255,255,0.2) 0%, transparent 70%);
+            z-index: -1;
+        }
+        
+        .project-card {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px) rotateY(5deg);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .contact-form input, .contact-form textarea {
+            transition: all 0.3s ease;
+        }
+        
+        .contact-form input:focus, .contact-form textarea:focus {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .social-link {
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            transform: translateY(-5px);
+        }
+        
+        canvas {
+            display: block;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+        
+        #hero-image {
+            border-radius: 50%;
+            border: 4px solid white;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform-style: preserve-3d;
+        }
+        
+        #hero-image:hover {
+            transform: scale(1.05) translateZ(20px);
+        }
+        
+        .floating-icon {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .floating-emoji {
+            position: absolute;
+            font-size: 24px;
+            animation: float 4s ease-in-out infinite;
+            z-index: 0;
+        }
+        
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+        .delay-4 { animation-delay: 0.8s; }
+        .delay-5 { animation-delay: 1s; }
+    </style>
 </head>
-<body>
-    <header class="header">
-        <a href="#" class="logo"><img src="./images/bf7-modified.png" alt="balloonflame7"></a>
-        <div class="fas fa-bars"></div>
-        <nav class="navbar">
-            <ul>
-                <li><a href="#home">home</a></li>
-                <li><a href="#about">about</a></li>
-                <li><a href="#service">services</a></li>
-                <li><a href="#portfolio">portfolio</a></li>
-                <li><a href="#team">team</a></li>
-                <li><a href="careers.html">career</a></li>
-                <li><a href="#contact">contact</a></li>
-                <li><a href="#faq">FAQ</a></li>
-            </ul>
-        </nav>
-    </header>
-
-  <section id="home" class="home">
-      <h1>Balloonflame7 — Igniting Ideas Into Reality</h1>
-      <h2>Where Imagination Takes Flight.</h2>
-    <div class="wave wave1"></div>
-    <div class="wave wave2"></div>
-    <div class="wave wave3"></div>
-  </section>
-
-  <section id="about" class="about">
-    <h1 class="heading">about us</h1>
-    <div class="row">
-        <div class="content">
-            <h3>We make creativity work for your brand!</h3>
-            <p style="Font-family: zerpixl-volt;">I’m a creative constantly brainstorming great ideas<b> all. the. time.</b><br>
-               With the skills I possess, I’m capable of handling anything and everything my brand needs, even as a solo founder</p>
-            <a href="#"><button class="btn">Read More</button></a>
+<body class="bg-gray-50">
+    
+ 
+    <nav class="fixed w-full z-50 bg-white bg-opacity-80 backdrop-blur-sm py-4 shadow-sm">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-gray-800">Jatin<span class="text-blue-600">.</span></a>
+            <div class="hidden md:flex space-x-8">
+                <a href="#home" class="text-gray-600 hover:text-blue-600 font-medium">Home</a>
+                <a href="#about" class="text-gray-600 hover:text-blue-600 font-medium">About</a>
+                <a href="#projects" class="text-gray-600 hover:text-blue-600 font-medium">Projects</a>
+                <a href="#contact" class="text-gray-600 hover:text-blue-600 font-medium">Contact</a>
+            </div>
+            <button class="md:hidden text-gray-600">
+                <i data-feather="menu"></i>
+            </button>
         </div>
-    </div>
-  </section>
-
-  <div class="pt-5 pb-5" style="background-color: #f2f2f2;">
-    <div class="container">
-      <div class="row">
-        <div class="section-head col-sm-12" id="service">
-          <h1>Our Services</h1>
-          <p>I help you build high-quality digital solutions and products while delivering a wide range of related professional services. I provide world-class service to my clients.
-            </p>
-        </div>
-        <div class="col-lg-4 col-sm-6">
-          <div class="item"> <span class="icon feature_box_col_one"><i class="fa fa-laptop"></i></span>
-            <h6>Web App Development</h6>
-            <p>My custom web development services include both front-end and back-end development. Whether it's enhancing an existing app or architecting an enterprise solution, I’m ready for the challenge..</p>
-          </div>
-        </div>
-        <div class="col-lg-4 col-sm-6">
-          <div class="item"> <span class="icon feature_box_col_two"><i class="fa fa-android"></i></span>
-            <h6>Mobile App Development</h6>
-            <p>I specialize in creating multi-platform mobile app solutions for both Android and iOS devices using Flutter. I deliver custom mobile apps that run smoothly across multiple platforms.ting Multi-Platform Mobile App Solutions For Both Android And IOS Devices. Using PhoneGap, Xamarin, And React Native, We Offer Custom Mobile App That Runs Smoothly On Multiple Platforms.</p>
-          </div>
-        </div>
-        <div class="col-lg-4 col-sm-6">
-          <div class="item"> <span class="icon feature_box_col_three"><i class="fa fa-magic"></i></span>
-            <h6>Digital Marketing</h6>
-            <p>The digital marketing services I provide have their own unique appeal. By utilizing these services, my clients can increase their visibility and engage effectively with their customers on online platforms.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-</div>
-
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
-
-  <section class="counters">
-    <div class="container">
-        <div>
-            <i class="far fa-clock fa-4x"></i>
-            <div class="counter" data-target="0">0</div>
-            <h3>Working Hours</h3>
-        </div>
-        <div>
-            <i class="fas fa-gift fa-4x"></i>
-            <div class="counter" data-target="20">0</div>
-            <h3>Completed Projects</h3>
-        </div>
-        <div>
-            <i class="fas fa-users fa-4x"></i>
-            <div class="counter" data-target="2">0</div>
-            <h3>Happy Clients</h3>
-        </div>
-        <div>
-            <i class="fas fa-award fa-4x"></i>
-            <div class="counter" data-target="0">0</div>
-            <h3>Awards Received</h3>
-        </div>
-    </div>
-</section>
-
-<div class="pt-5 pb-5">
-    <div class="container">
-      <div class="row">
-        <div class="section-head-1 col-sm-12" style="text-align: center;">
-          <h4 style="margin-top: -5rem;" id="portfolio"><span>Our</span> Projects</h4>
-          
-          <p>The objective of Balloonflame7 is to enable a large number of youth to take up industry-relevant skill training,<br> helping them secure better livelihood opportunities.
-            </p>
-        </div>
-        
-        <div class="col-lg-4 col-sm-6">
-          
-          <div class="item"> <span class="icon feature_box_col_four"><i class="fa fa-database"></i></span>
-            <h6>Neurofond – The Quantum AI Trinity</h6>
-            
-            <p>Neurofond is a revolutionary Quantum AI — fast, emotional, adaptive, and alive.<br>
-            Not just built… it evolves.<br>
-          <b>(Not Deployed yet.)</b><br>
-        By <b>Balloonflame7 🇮🇳</b><br><br><br></p>
-          </div>
-        </div>
-        
-        <div class="col-lg-4 col-sm-6">
-          <div class="item"> <span class="icon feature_box_col_five"><i class="fa fa-upload"></i></span>
-            <h6>Vybe.net</h6>
-            <p><b>Vybe.net</b> is a cutting-edge platform designed to revolutionize digital interaction.<br>
-Stay connected, engaged, and personalized in ways you've never experienced before.<br><b>COMING SOON</b><br>By <b>Balloonflame7 🇮🇳</b><br><br><br></p>
-          </div>
-        </div>
-        <div class="col-lg-4 col-sm-6">
-          <div class="item"> <span class="icon feature_box_col_six"><i class="fa fa-Pen"></i></span>
-             <h6>PolyShivpuri Website – An Institute Site</h6>
-            <p>Polyshivpuri is an Site for Government Polytechnic College Shivpuri<br>.<br>
-<b>Available</b><br> <a href="https://Polyshivpuri.onrender.com/">Click Here</a>
-                
-By <b>Balloonflame7 🇮🇳.</b><br><br><br></p>
-          </div>
-             <div class="item"> <span class="icon feature_box_col_six"><i class="fa fa-lock"></i></span>
-             <h6>SecuraX. – Security For Everyone Anywhere</h6>
-            <p>SecuraX — Your Cyber Shield<br>
-AI-powered threat detection & protection for the digital age<br>
-<b>IN DEVELOPMENT</b><br>
-By <b>Balloonflame7 🇮🇳.</b><br><br><br></p>
-         <button class="secondary-button px-8 py-4 rounded-full font-bold text-cyan-400" href="https://secura.ct.ws/">
-                    Learn More
-        </button>
-        </div>
-      </div>
-    </div>
-</div>
-
-<div class="communicate">
-    <h3>
-        "At <span style="color: #ff5733; font-weight: bold;">BalloonFlame7</span>, we believe 
-        <span style="color: #ff5733; font-weight: bold;">creativity</span> should ignite 
-        <span style="color: #ff5733; font-weight: bold;">curiosity</span> and spark 
-        <span style="color: #ff5733; font-weight: bold;">joy</span>."
-    </h3>
-    <p>— <span style="color: #ff5733; font-weight: bold;">Founder</span>, BalloonFlame7</p>
-    <a href="#contact"><button class="btn">Contact Now</button></a>
-</div>
-
-
-<div class="testimonials mt-100">
-    <div class="container">
-        <div class="section-header" style="text-align: center;">
-            <h2 style="margin-top: -15rem;">Testimonials</h2>
-            <p style="font-size: 2rem;">
-                See what people have to say about us
-            </p>
-        </div>
-
-        <div class="owl-carousel testimonials-carousel">
-            <div class="testimonial-item row align-items-center">
-                <div class="testimonial-img">
-                    <img src="https://i.scdn.co/image/ab67616d0000b2734006efe15f1919064a4ecdad" alt="Testimonial image">
+    </nav>
+    
+ 
+    <section id="home" class="min-h-screen flex items-center pt-16 hero-bg">
+        <div class="container mx-auto px-6 py-20 flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 mb-12 md:mb-0" data-aos="fade-right">
+                <h1 class="text-5xl md:text-6xl font-bold text-gray-800 leading-tight mb-4">
+                    Hi, I'm <span class="text-blue-600">Jatin Sharma</span> —
+                    <span class="block mt-2">Student & Developer</span>
+                </h1>
+                <p class="text-xl text-gray-600 mb-8 max-w-lg">
+                    Crafting digital experiences with code, passion, and precision.
+                </p>
+                <div class="flex space-x-4">
+                    <a href="#projects" class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg transition duration-300">
+                        View Projects
+                    </a>
+                    <a href="#contact" class="border-2 border-blue-600 text-blue-600 hover:bg-blue-50 font-medium py-3 px-6 rounded-lg transition duration-300">
+                        Contact Me
+                    </a>
                 </div>
-                <div class="testimonial-text">
-    <h3 style="color: #ff5733; font-weight: bold;">Person-1</h3>
-    <h4 style="font-style: italic; color: #666;">Founder</h4>
-    <p>
-        "At <span style="color: #ff5733; font-weight: bold;">BalloonFlame7</span>, every design is crafted with 
-        <span style="color: #ff5733; font-weight: bold;">passion</span>, 
-        <span style="color: #ff5733; font-weight: bold;">precision</span>, and a deep respect for 
-        <span style="color: #ff5733; font-weight: bold;">creativity</span>. 
-        As a solo founder, I ensure every detail reflects my 
-        <span style="color: #ff5733; font-weight: bold;">commitment</span> to quality and 
-        <span style="color: #ff5733; font-weight: bold;">originality</span>."
-    </p>
-</div>
-
             </div>
+            <div class="md:w-1/2 flex justify-center" data-aos="fade-left">
+                <div class="relative">
+                    <div id="hero-image-container" class="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden shadow-2xl transform perspective-1000">
+                        <div class="bg-gray-200 border-2 border-dashed rounded-full w-full h-full" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+ 
+    <section id="about" class="min-h-screen flex items-center py-20 section-bg">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-16" data-aos="fade-up">
+                    <h2 class="text-4xl font-bold text-gray-800 mb-4">About Me</h2>
+                    <div class="w-20 h-1 bg-blue-600 mx-auto"></div>
+                </div>
+                
+                <div class="relative" data-aos="fade-up">
+                    <div class="relative z-10">
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-6 text-center">Student & Developer</h3>
+                        <div class="space-y-6 text-center">
+                            <p class="text-gray-600 text-xl leading-relaxed">
+                                Hey! I'm Jatin Sharma — turning <span class="text-blue-600 font-medium">coffee into code</span> ☕💻, 
+                                <span class="text-blue-600 font-medium">bugs into dance moves</span> 🐛💃, and 
+                                <span class="text-blue-600 font-medium">ideas into real projects</span> 🚀✨.
+                            </p>
+                            <p class="text-gray-600 text-xl leading-relaxed">
+                                When I'm not coding, you'll find me exploring the latest in AI, diving into cybersecurity challenges, 
+                                or brainstorming my next big idea over a cup of chai.
+                            </p>
+                            <p class="text-gray-600 text-xl leading-relaxed italic">
+                                💡 Random fact: I can write Python code faster than I can make instant noodles 🍜😎
+                            </p>
+                        </div>
+                        
+                        <div class="grid grid-cols-2 md:grid-cols-3 gap-6 mt-12">
+                            <div class="flex items-center justify-center bg-blue-50 p-4 rounded-lg hover:bg-blue-100 transition duration-300">
+                                <i data-feather="code" class="text-blue-600 mr-2"></i>
+                                <span class="text-gray-700">Web Dev 💻</span>
+                            </div>
+                            <div class="flex items-center justify-center bg-purple-50 p-4 rounded-lg hover:bg-purple-100 transition duration-300">
+                                <i data-feather="cpu" class="text-purple-600 mr-2"></i>
+                                <span class="text-gray-700">AI/ML 🤖</span>
+                            </div>
+                            <div class="flex items-center justify-center bg-green-50 p-4 rounded-lg hover:bg-green-100 transition duration-300">
+                                <i data-feather="shield" class="text-green-600 mr-2"></i>
+                                <span class="text-gray-700">Cybersecurity 🛡️</span>
+                            </div>
+                            <div class="flex items-center justify-center bg-red-50 p-4 rounded-lg hover:bg-red-100 transition duration-300">
+                                <i data-feather="gamepad" class="text-red-600 mr-2"></i>
+                                <span class="text-gray-700">Game Dev 🎮</span>
+                            </div>
+                            <div class="flex items-center justify-center bg-indigo-50 p-4 rounded-lg hover:bg-indigo-100 transition duration-300">
+                                <i data-feather="activity" class="text-indigo-600 mr-2"></i>
+                                <span class="text-gray-700">Quantum ⚛️</span>
+                            </div>
+                        </div>
+                    </div>
+                   
+                    <div class="absolute -top-10 -left-10 text-4xl floating-emoji delay-1">💻</div>
+                    <div class="absolute -bottom-10 -right-10 text-4xl floating-emoji delay-2">🧠</div>
+                    <div class="absolute -top-10 -right-10 text-4xl floating-emoji delay-3">✨</div>
+                    <div class="absolute -bottom-10 -left-10 text-4xl floating-emoji delay-4">🚀</div>
+                    <div class="absolute top-1/4 -left-20 text-4xl floating-emoji delay-5">🌟</div>
+                    <div class="absolute top-3/4 -right-20 text-4xl floating-emoji delay-1">🎯</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+
+    <section id="projects" class="py-20 section-bg">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">My Projects</h2>
+                <div class="w-20 h-1 bg-blue-600 mx-auto"></div>
+                <p class="text-gray-600 mt-4 max-w-2xl mx-auto">
+                    Here are some of my recent projects that showcase my skills and passion for development.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                
+                <div class="project-card bg-white rounded-xl shadow-md overflow-hidden transform transition-all duration-500 hover:shadow-2xl" data-aos="fade-up">
+                    <div class="h-48 bg-gradient-to-r from-blue-400 to-indigo-500 flex items-center justify-center">
+                        <div class="bg-gray-200 border-2 border-dashed rounded-xl w-16 h-16" />
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Neurofond</h3>
+                        <p class="text-gray-600 mb-4">
+                            An AI-powered platform for neural network research and development.(Not Deployed yet)
+                        </p>
+                        <a href="#" class="text-blue-600 font-medium flex items-center">
+                            View Project
+                            <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
+                        </a>
+                    </div>
+                </div>
+                
+             
+                <div class="project-card bg-white rounded-xl shadow-md overflow-hidden" data-aos="fade-up" data-aos-delay="100">
+                    <div class="h-48 bg-gradient-to-r from-purple-400 to-pink-500 flex items-center justify-center">
+                        <div class="bg-gray-200 border-2 border-dashed rounded-xl w-16 h-16" />
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Vybe.net</h3>
+                        <p class="text-gray-600 mb-4">
+                            A social networking platform with real-time communication features. (Not deployed yet)
+                        </p>
+                        <a href="#" class="text-blue-600 font-medium flex items-center">
+                            View Project
+                            <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
+                        </a>
+                    </div>
+                </div>
+                
+               
+                <div class="project-card bg-white rounded-xl shadow-md overflow-hidden" data-aos="fade-up" data-aos-delay="200">
+                    <div class="h-48 bg-gradient-to-r from-green-400 to-teal-500 flex items-center justify-center">
+                        <div class="bg-gray-200 border-2 border-dashed rounded-xl w-16 h-16" />
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">PolyShivpuri</h3>
+                        <p class="text-gray-600 mb-4">
+                            An College Website For Government Polytechnic College Shivpuri.
+                        </p>
+                        <a href="https://polyshivpuri.onrender.com/" class="text-blue-600 font-medium flex items-center">
+                            View Project
+                            <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
+                        </a>
+                    </div>
+                </div>
+                
+               
+                <div class="project-card bg-white rounded-xl shadow-md overflow-hidden" data-aos="fade-up" data-aos-delay="300">
+                    <div class="h-48 bg-gradient-to-r from-red-400 to-orange-500 flex items-center justify-center">
+                        <div class="bg-gray-200 border-2 border-dashed rounded-xl w-16 h-16" />
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">SecuraX</h3>
+                        <p class="text-gray-600 mb-4">
+                            Advanced cybersecurity solution for threat detection and prevention. (In Development)
+                        </p>
+                        <a href="https://Secura.ct.ws/" class="text-blue-600 font-medium flex items-center">
+                           Learn More
+                            <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 section-bg">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">Get In Touch</h2>
+                <div class="w-20 h-1 bg-blue-600 mx-auto"></div>
+                <p class="text-gray-600 mt-4 max-w-2xl mx-auto">
+                    Have a project in mind or want to discuss potential opportunities? Feel free to reach out!
+                </p>
+            </div>
+            
+            <div class="flex flex-col md:flex-row">
+                <div class="md:w-1/2 mb-12 md:mb-0 md:pr-12" data-aos="fade-right">
+                    <form class="contact-form">
+                        <div class="mb-6">
+                            <label for="name" class="block text-gray-700 font-medium mb-2">Name</label>
+                            <input type="text" id="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600" placeholder="Your name">
+                        </div>
+                        <div class="mb-6">
+                            <label for="email" class="block text-gray-700 font-medium mb-2">Email</label>
+                            <input type="email" id="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600" placeholder="your.email@example.com">
+                        </div>
+                        <div class="mb-6">
+                            <label for="message" class="block text-gray-700 font-medium mb-2">Message</label>
+                            <textarea id="message" rows="5" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600" placeholder="Your message here..."></textarea>
+                        </div>
+                        <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg transition duration-300 w-full">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+                
+                <div class="md:w-1/2" data-aos="fade-left">
+                    <div class="bg-gray-50 rounded-xl p-8 h-full">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-6">Contact Information</h3>
+                        
+                        <div class="mb-8">
+                            <h4 class="text-lg font-semibold text-gray-700 mb-4">Connect with me</h4>
+                            <div class="flex space-x-6">
+                                <a href="https://github.com/itx-me-king/" class="social-link text-gray-600 hover:text-blue-600">
+                                    <i data-feather="github" class="w-8 h-8"></i>
+                                </a>
+                                <a href="https://linkedin.com/in/balloonflame7" class="social-link text-gray-600 hover:text-blue-600">
+                                    <i data-feather="linkedin" class="w-8 h-8"></i>
+                                </a>
+                                <a href="https://x.com/balloonflame7/" class="social-link text-gray-600 hover:text-blue-600">
+                                    <i data-feather="twitter" class="w-8 h-8"></i>
+                                </a>
+                                <a href="mailto:jatinsharma@rediffmail.com" class="social-link text-gray-600 hover:text-blue-600">
+                                    <i data-feather="mail" class="w-8 h-8"></i>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-8">
+                            <h4 class="text-lg font-semibold text-gray-700 mb-4">Email Me</h4>
+                            <p class="text-gray-600 flex items-center">
+                                <i data-feather="mail" class="mr-3 text-blue-600"></i>
+                               Jatinsharma@rediffmail.com
+                            </p>
+                        </div>
+                        
+                        <div>
+                            <h4 class="text-lg font-semibold text-gray-700 mb-4">Location</h4>
+                            <p class="text-gray-600 flex items-center">
+                                <i data-feather="map-pin" class="mr-3 text-blue-600"></i>
+                                India
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-10 relative overflow-hidden">
+        <div class="container mx-auto px-6 text-center relative z-10">
+            <p>© 2025 Balloonflame7. All rights reserved.</p>
+            <p class="mt-2 text-gray-400">Designed and built with ❤️</p>
+        </div>
+        <div id="footer-background"></div>
+    </footer>
+    
+    <script>
+       
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
         
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="clients mt-100">
-    <div class="container">
-        <div class="section-header">
-            <h2>Our Clients</h2>
-            <p>
-                We don't just build softwares, we build your business.
-            </p>
-        </div>
-        <div class="owl-carousel clients-carousel">
-            <img src="./images/image.png" alt="Client Logo">
-            <img src="./images/image.png" alt="Client Logo">
-            <img src="./images/image.png" alt="Client Logo">
-            <img src="./images/image.png" alt="Client Logo">
-            <img src="./images/image.png" alt="Client Logo">
-            <img src="./images/image.png" alt="Client Logo">
-            <img src="./images/image.png" alt="Client Logo">
-            <img src="./images/image.png" alt="Client Logo">
-        </div>
-    </div>
-</div>
-<a href="#" class="back-to-top"><i class="ion-ios-arrow-up"></i></a>
-<script src="lib/jquery/jquery.min.js"></script>
-<script src="lib/jquery/jquery-migrate.min.js"></script>
-<script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="lib/easing/easing.min.js"></script>
-<script src="lib/waypoints/waypoints.min.js"></script>
-<script src="lib/counterup/counterup.min.js"></script>
-<script src="lib/owlcarousel/owl.carousel.min.js"></script>
-<script src="lib/lightbox/js/lightbox.min.js"></script>
-
-<section class="team" style="margin-top: 7rem;">
-  <h1 class="heading" style="margin-top: -1.5rem;" id="team">our team</h1>
-  <p></p>
-  <div class="row">
-      <div class="card">
-          <div class="image">
-              <img src="https://i.scdn.co/image/ab67616d0000b2734006efe15f1919064a4ecdad" alt="Team member 1">
-          </div>
-          <div class="info">
-    <h3>Jatin Sharma</h3>
-    <span style="font-style: italic; color: #ff5733;">A Techie, Founder & Creator</span>
-    <div class="icons">
-        <a href="https://www.facebook.com/Balloonflame7/" class="fab fa-facebook-f" style="color: #3b5998;"></a>
-        <a href="https://twitter.com/balloonflame7" class="fab fa-twitter" style="color: #1DA1F2;"></a>
-        <a href="https://www.instagram.com/balloonflame7" class="fab fa-instagram" style="color: #E4405F;"></a>
-        <a href="https://www.linkedin.com/in/balloonflame7" class="fab fa-linkedin" style="color: #0077B5;"></a>
-    </div>
-</div>
-
-          </div>
-      </div>
-  </div>
-</section>
-
-<section id="contact" class="contact">
-    <h1 class="heading">get in touch</h1>
-</section>
-<div class="contact-in">
-    <div class="contact-map">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d30711243.17762776!2d64.4398422293091!3d20.011408266548177!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30635ff06b92b791%3A0xd78c4fa1854213a6!2sIndia!5e0!3m2!1sen!2sin!4v1644684739958!5m2!1sen!2sin" width="100%" height="auto" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-    </div>
-   <div class="contact-form">
-    <form action="./contactme.php" method="POST">
-        <input type="text" name="name" placeholder="Name" class="contact-form-txt" required>
-        <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" required placeholder="Contact number" maxlength="10" class="contact-form-phone">
-        <input type="email" name="email" placeholder="Email" class="contact-form-email" required>
-        <textarea placeholder="Your Message" name="message" class="contact-form-txtarea" required></textarea>
-        <input type="submit" value="Submit" name="submit" class="contact-form-btn">
-    </form>
-</div>
-
-    </div>
-
-    <section class="faq">
-      <h1 class="heading" style="margin-top: -2rem; color: #00bfff;" id="faq">FAQ</h1>
-      <div class="row">
-          <div class="accordion-container">
-              <div class="accordion">
-                  <div class="accordion-header">
-                      <span>+</span>
-                      <h3>How much will it cost?</h3>
-                  </div>
-                  <div class="accordion-body">
-                      <p>To get a better idea of the cost of what you want to build, give us a quick phone call. We’ll ask you a few questions about the nature of the site, what sort of interactivity the site will have, your graphic design needs, etc. 
-                          Then we’ll be able to give you a ballpark figure. 
-                          If you’re still interested, we’ll come to your place of business and come up with a firm quote.</p>
-                  </div>
-              </div>
-              <div class="accordion">
-                  <div class="accordion-header">
-                      <span>+</span>
-                      <h3>How long it takes to design?</h3>
-                  </div>
-                  <div class="accordion-body">
-                      <p>The time limit of any assignment is normally dictated by the client. If you have any time limit in mind we will attempt to assemble it for you. 
-                          The main general delay in the making of a website is waiting for the content of the pages to be sent to us by the client.</p>
-                  </div>
-              </div>
-              <div class="accordion">
-                  <div class="accordion-header">
-                      <span>+</span>
-                      <h3>How do I associate with balloonflame7?</h3>
-                  </div>
-                  <div class="accordion-body">
-                      <p>The process begins when you contact us with your requirements. We analyze your requirements and respond to you. 
-                          On the basis of the further discussion, you can choose an engagement model that suits you the best. 
-                          After that, we begin the process of development.</p>
-                  </div>
-              </div>
-              <div class="accordion">
-                  <div class="accordion-header">
-                      <span>+</span>
-                      <h3>Can you help my current site look more professional?</h3>
-                  </div>
-                  <div class="accordion-body">
-                      <p>Yes. Give us your requirements and we have experienced expertise to help you give a 
-                          new professional look that really wonders!</p>
-                  </div>
-              </div>
-              <div class="accordion">
-                  <div class="accordion-header">
-                      <span>+</span>
-                      <h3>When do I pay?</h3>
-                  </div>
-                  <div class="accordion-body">
-                      <p>For most projects, equal payments are made at the start, midway, and the end of the project, but we can work with you to set up a schedule that meets your needs. 
-                          We understand that this is a big investment and want to help you budget for the expense in whatever way possible.
-                          We accept checks, PayPal, and all major credit cards.</p>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </section>
-
-    <div class="footer">
-      <div class="footer-top">
-          <div class="container">
-              <div class="row">
-                  <div class="col-lg-3 col-md-6 footer-links">
-                      <h4>About Us</h4>
-                      <ul>
-                          <li><i class="ion-ios-arrow-forward"></i> <a href="#">Home</a></li>
-                          <li><i class="ion-ios-arrow-forward"></i> <a href="#about">About us</a></li>
-                          <li><i class="ion-ios-arrow-forward"></i> <a href="#service">Our services</a></li>
-                          <li><i class="ion-ios-arrow-forward"></i> <a href="#">Terms & condition</a></li>
-                          <li><i class="ion-ios-arrow-forward"></i> <a href="#">Privacy policy</a></li>
-                      </ul>
-                  </div>
-
-                  <div class="col-lg-3 col-md-6 footer-links">
-                      <h4>Useful Links</h4>
-                      <ul>
-                          <li><i class="ion-ios-arrow-forward"></i> <a href="portfolio.html">Portfolio</a></li>
-                          <li><i class="ion-ios-arrow-forward"></i> <a href="#team">Team</a></li>
-                          <li><i class="ion-ios-arrow-forward"></i> <a href="careers.html">Career</a></li>
-                          <li><i class="ion-ios-arrow-forward"></i> <a href="#contact">Contact</a></li>
-                          <li><i class="ion-ios-arrow-forward"></i> <a href="#faq">FAQ</a></li>
-                      </ul>
-                  </div>
-
-                  <div class="col-lg-3 col-md-6 footer-contact" style="font-size: 1.5rem;">
-                      <h4>Contact Us</h4>
-                      <p>
-                          1300  Center Avenue<br>
-                          Fresno, California<br>
-                          United States <br>
-                          <strong>Phone:</strong> +123-456-7890<br>
-                          <strong>Email:</strong>balloonflame7india@outlook.com<br>
-                      </p>
-
-                      <div class="social-links">
-                          <a href="https://www.facebook.com/balloonflame7"><i class="ion-logo-facebook"></i></a>
-                          <a href="https://twitter.com/balloonflame7"><i class="ion-logo-twitter"></i></a>
-                          <a href="https://www.linkedin.com/in/balloonflame7"><i class="ion-logo-linkedin"></i></a>
-                          <a href="https://www.instagram.com/balloonflame7"><i class="ion-logo-instagram"></i></a>
-                          <a href="https://accounts.google.com/servicelogin/signinchooser?flowName=GlifWebSignIn&flowEntry=ServiceLogin"><i class="ion-logo-googleplus"></i></a>
-                      </div>
-
-                  </div>
-
-                  <div class="col-lg-3 col-md-6 footer-newsletter">
-                      <h4>Subscription</h4>
-                      <p>With Our Skills Put Together, You Get An Ensemble Capable Of Doing Anything And Everything Your Brand Needs. Subscribe Here To Get Our Latest Updates.</p>
-                      <form action="" method="post">
-                          <input type="email" name="email"><input type="submit"  value="Subscribe">
-                      </form>
-                  </div>
-
-              </div>
-          </div>
-      </div>
-
-      <div class="container">
-          <div class="row align-items-center">
-              <div class="col-md-6 copyright" style="color: #fff; font-size: 1.3rem;">
-                  Copyright &copy; 2025 Balloonflame7. All Rights Reserved.
-              </div>
-          </div>
-      </div>
-  </div>
-
-  <a href="#" class="back-to-top"><i class="ion-ios-arrow-up"></i></a>
+       
+        feather.replace();
+        
+       
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            function noise(x, y, z) {
+                return Math.sin(x * 1.7 + z * 0.5) * Math.cos(y * 2.3 + z * 0.7) * Math.sin(z * 1.9);
+            }
+            
+         
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            const renderer = new THREE.WebGLRenderer({ 
+                alpha: true, 
+                antialias: true 
+            });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(window.devicePixelRatio);
+            document.body.appendChild(renderer.domElement);
+            
+           
+            const particleCount = 5000;
+            const particles = new THREE.BufferGeometry();
+            const positions = new Float32Array(particleCount * 3);
+            const colors = new Float32Array(particleCount * 3);
+            const velocities = new Float32Array(particleCount * 3);
+            const originalPositions = new Float32Array(particleCount * 3);
+            
+           
+            for (let i = 0; i < particleCount; i++) {
+                const i3 = i * 3;
+                
+          
+                const radius = Math.random() * 15 + 5;
+                const angle = Math.random() * Math.PI * 2;
+                const height = (Math.random() - 0.5) * 10;
+                
+                positions[i3] = Math.cos(angle) * radius;
+                positions[i3 + 1] = height;
+                positions[i3 + 2] = Math.sin(angle) * radius;
+                
+                originalPositions[i3] = positions[i3];
+                originalPositions[i3 + 1] = positions[i3 + 1];
+                originalPositions[i3 + 2] = positions[i3 + 2];
+                
+               
+                velocities[i3] = (Math.random() - 0.5) * 0.02;
+                velocities[i3 + 1] = (Math.random() - 0.5) * 0.02;
+                velocities[i3 + 2] = (Math.random() - 0.5) * 0.02;
+                
+              
+                const colorPhase = i / particleCount;
+                colors[i3] = 0.2 + colorPhase * 0.6;
+                colors[i3 + 1] = 0.4 + Math.sin(colorPhase * Math.PI) * 0.4;
+                colors[i3 + 2] = 0.8 - colorPhase * 0.3;
+            }
+            
+            particles.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+            particles.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+            
+          
+            const particleMaterial = new THREE.PointsMaterial({
+                size: 0.05,
+                vertexColors: true,
+                blending: THREE.AdditiveBlending,
+                transparent: true,
+                opacity: 0.6
+            });
+            
+            const particleSystem = new THREE.Points(particles, particleMaterial);
+            scene.add(particleSystem);
+            
+            
+            const lineGeometry = new THREE.BufferGeometry();
+            const linePositions = [];
+            const lineCount = 1000;
+            
+          
+            for (let i = 0; i < lineCount; i++) {
+                const angle = (i / lineCount) * Math.PI * 4;
+                const radius = 5 + Math.sin(angle * 3) * 3;
+                const height = Math.sin(angle * 2) * 5;
+                
+                linePositions.push(
+                    Math.cos(angle) * radius,
+                    height,
+                    Math.sin(angle) * radius
+                );
+            }
+            
+            lineGeometry.setAttribute('position', new THREE.Float32BufferAttribute(linePositions, 3));
+            
+            const lineMaterial = new THREE.LineBasicMaterial({
+                color: 0x4a90e2,
+                transparent: true,
+                opacity: 0.2
+            });
+            
+            const lines = new THREE.Line(lineGeometry, lineMaterial);
+            scene.add(lines);
+            
+ 
+            const centralGeometry = new THREE.IcosahedronGeometry(1, 1);
+            const centralMaterial = new THREE.MeshPhongMaterial({
+                color: 0x3b82f6,
+                emissive: 0x1e40af,
+                emissiveIntensity: 0.3,
+                wireframe: true,
+                transparent: true,
+                opacity: 0.7
+            });
+            
+            const centralStructure = new THREE.Mesh(centralGeometry, centralMaterial);
+            scene.add(centralStructure);
+            
+          
+            const morphShapes = [];
+            const morphCount = 12;
+            
+            for (let i = 0; i < morphCount; i++) {
+                const geometry = i % 3 === 0 ? new THREE.TorusKnotGeometry(0.5, 0.1, 64, 8) :
+                                i % 3 === 1 ? new THREE.OctahedronGeometry(0.6, 0) :
+                                new THREE.IcosahedronGeometry(0.4, 1);
+                
+                const hue = (i / morphCount) * 0.4 + 0.5;
+                const material = new THREE.MeshPhongMaterial({
+                    color: new THREE.Color().setHSL(hue, 0.8, 0.6),
+                    emissive: new THREE.Color().setHSL(hue, 0.8, 0.3),
+                    emissiveIntensity: 0.2,
+                    transparent: true,
+                    opacity: 0.6
+                });
+                
+                const shape = new THREE.Mesh(geometry, material);
+                const angle = (i / morphCount) * Math.PI * 2;
+                const radius = 8 + Math.sin(i) * 3;
+                
+                shape.position.set(
+                    Math.cos(angle) * radius,
+                    Math.sin(i * 1.5) * 3,
+                    Math.sin(angle) * radius
+                );
+                
+                scene.add(shape);
+                morphShapes.push(shape);
+            }
+            
+          
+            const ambientLight = new THREE.AmbientLight(0x404040, 0.4);
+            scene.add(ambientLight);
+            
+            const directionalLight = new THREE.DirectionalLight(0x3b82f6, 1);
+            directionalLight.position.set(10, 10, 5);
+            scene.add(directionalLight);
+            
+            const pointLight1 = new THREE.PointLight(0x8b5cf6, 0.8);
+            pointLight1.position.set(-10, 0, 10);
+            scene.add(pointLight1);
+            
+            const pointLight2 = new THREE.PointLight(0x10b981, 0.8);
+            pointLight2.position.set(10, -5, -10);
+            scene.add(pointLight2);
+            
+        
+            camera.position.set(0, 0, 20);
+            
+            
+            let mouseX = 0;
+            let mouseY = 0;
+            let targetX = 0;
+            let targetY = 0;
+            
+            document.addEventListener('mousemove', (event) => {
+                mouseX = (event.clientX / window.innerWidth) * 2 - 1;
+                mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
+                targetX = mouseX * 5;
+                targetY = mouseY * 5;
+            });
+            
+          
+            let time = 0;
+            function animate() {
+                requestAnimationFrame(animate);
+                time += 0.01;
+                
+               
+                const positions = particles.attributes.position.array;
+                for (let i = 0; i < particleCount; i++) {
+                    const i3 = i * 3;
+                    
+                 
+                    const noiseValue = noise(
+                        originalPositions[i3] * 0.1 + time * 0.5,
+                        originalPositions[i3 + 1] * 0.1 + time * 0.3,
+                        originalPositions[i3 + 2] * 0.1 + time * 0.7
+                    );
+                    
+                    positions[i3] = originalPositions[i3] + noiseValue * 2;
+                    positions[i3 + 1] = originalPositions[i3 + 1] + Math.sin(time + i * 0.1) * 0.5;
+                    positions[i3 + 2] = originalPositions[i3 + 2] + Math.cos(time + i * 0.1) * 0.5;
+                }
+                particles.attributes.position.needsUpdate = true;
+                
+                centralStructure.rotation.x += 0.002;
+                centralStructure.rotation.y += 0.003;
+                centralStructure.scale.setScalar(1 + Math.sin(time * 2) * 0.1);
+                
+               
+                morphShapes.forEach((shape, index) => {
+                    const offset = index / morphCount;
+                    shape.rotation.x += 0.001 + offset * 0.002;
+                    shape.rotation.y += 0.002 + offset * 0.001;
+                    shape.rotation.z += 0.001;
+                    
+                 
+                    const angle = time * 0.5 + offset * Math.PI * 2;
+                    const radius = 8 + Math.sin(time + offset * 3) * 3;
+                    shape.position.x = Math.cos(angle) * radius;
+                    shape.position.z = Math.sin(angle) * radius;
+                    shape.position.y = Math.sin(time * 2 + offset * 5) * 3;
+                    
+                
+                    const scale = 1 + Math.sin(time * 3 + offset * 10) * 0.3;
+                    shape.scale.setScalar(scale);
+                });
+                
+             
+                lines.rotation.y += 0.001;
+                lines.rotation.x = Math.sin(time * 0.5) * 0.1;
+                
+           
+                camera.position.x += (targetX - camera.position.x) * 0.02;
+                camera.position.y += (targetY - camera.position.y) * 0.02;
+                camera.position.z = 20 + Math.sin(time * 0.3) * 2;
+                
+                camera.lookAt(scene.position);
+                
+                renderer.render(scene, camera);
+            }
+            
+            animate();
+            
+         
+            window.addEventListener('resize', () => {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            });
+            
+       
+            function createSectionBackground(sectionId, colorTheme) {
+                const section = document.getElementById(sectionId);
+                if (!section) return;
+                
+                const sectionScene = new THREE.Scene();
+                const sectionCamera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+                const sectionRenderer = new THREE.WebGLRenderer({ 
+                    alpha: true, 
+                    antialias: true 
+                });
+                sectionRenderer.setSize(window.innerWidth, window.innerHeight);
+                sectionRenderer.setPixelRatio(window.devicePixelRatio);
+                
+                const canvasContainer = document.createElement('div');
+                canvasContainer.style.position = 'absolute';
+                canvasContainer.style.top = '0';
+                canvasContainer.style.left = '0';
+                canvasContainer.style.width = '100%';
+                canvasContainer.style.height = '100%';
+                canvasContainer.style.zIndex = '-1';
+                canvasContainer.appendChild(sectionRenderer.domElement);
+                section.appendChild(canvasContainer);
+                
+              
+                const sectionParticleCount = 2000;
+                const sectionParticles = new THREE.BufferGeometry();
+                const sectionPositions = new Float32Array(sectionParticleCount * 3);
+                const sectionColors = new Float32Array(sectionParticleCount * 3);
+                
+                for (let i = 0; i < sectionParticleCount; i++) {
+                    const i3 = i * 3;
+                    const radius = Math.random() * 25 + 5;
+                    const angle = Math.random() * Math.PI * 2;
+                    
+                    sectionPositions[i3] = Math.cos(angle) * radius;
+                    sectionPositions[i3 + 1] = (Math.random() - 0.5) * 15;
+                    sectionPositions[i3 + 2] = Math.sin(angle) * radius;
+                    
+                  
+                    if (colorTheme === 'blue') {
+                        sectionColors[i3] = 0.2 + Math.random() * 0.3;
+                        sectionColors[i3 + 1] = 0.4 + Math.random() * 0.4;
+                        sectionColors[i3 + 2] = 0.8 + Math.random() * 0.2;
+                    } else if (colorTheme === 'green') {
+                        sectionColors[i3] = 0.2 + Math.random() * 0.3;
+                        sectionColors[i3 + 1] = 0.7 + Math.random() * 0.3;
+                        sectionColors[i3 + 2] = 0.3 + Math.random() * 0.4;
+                    } else {
+                        sectionColors[i3] = 0.5 + Math.random() * 0.5;
+                        sectionColors[i3 + 1] = 0.3 + Math.random() * 0.5;
+                        sectionColors[i3 + 2] = 0.8 + Math.random() * 0.2;
+                    }
+                }
+                
+                sectionParticles.setAttribute('position', new THREE.BufferAttribute(sectionPositions, 3));
+                sectionParticles.setAttribute('color', new THREE.BufferAttribute(sectionColors, 3));
+                
+                const sectionParticleMaterial = new THREE.PointsMaterial({
+                    size: 0.04,
+                    vertexColors: true,
+                    blending: THREE.AdditiveBlending,
+                    transparent: true,
+                    opacity: 0.5
+                });
+                
+                const sectionParticleSystem = new THREE.Points(sectionParticles, sectionParticleMaterial);
+                sectionScene.add(sectionParticleSystem);
+                
+                
+                const flowShapes = [];
+                const flowShapeCount = 8;
+                
+                for (let i = 0; i < flowShapeCount; i++) {
+                    const geometry = i % 4 === 0 ? new THREE.TorusGeometry(0.8, 0.2, 16, 100) :
+                                    i % 4 === 1 ? new THREE.DodecahedronGeometry(0.6, 0) :
+                                    i % 4 === 2 ? new THREE.ConeGeometry(0.5, 1.2, 6) :
+                                    new THREE.TorusKnotGeometry(0.4, 0.1, 64, 8);
+                    
+                    const hue = colorTheme === 'blue' ? 0.6 + Math.random() * 0.2 :
+                               colorTheme === 'green' ? 0.3 + Math.random() * 0.2 :
+                               0.5 + Math.random() * 0.3;
+                    
+                    const material = new THREE.MeshPhongMaterial({
+                        color: new THREE.Color().setHSL(hue, 0.8, 0.6),
+                        emissive: new THREE.Color().setHSL(hue, 0.8, 0.3),
+                        emissiveIntensity: 0.1,
+                        transparent: true,
+                        opacity: 0.4,
+                        wireframe: Math.random() > 0.5
+                    });
+                    
+                    const shape = new THREE.Mesh(geometry, material);
+                    const angle = (i / flowShapeCount) * Math.PI * 2;
+                    const radius = 10 + Math.sin(i) * 4;
+                    
+                    shape.position.set(
+                        Math.cos(angle) * radius,
+                        Math.sin(i * 1.5) * 4,
+                        Math.sin(angle) * radius
+                    );
+                    
+                    sectionScene.add(shape);
+                    flowShapes.push(shape);
+                }
+                
+           
+                const sectionAmbientLight = new THREE.AmbientLight(0xffffff, 0.2);
+                sectionScene.add(sectionAmbientLight);
+                
+                const sectionPointLight = new THREE.PointLight(
+                    colorTheme === 'blue' ? 0x3b82f6 :
+                    colorTheme === 'green' ? 0x10b981 : 0x8b5cf6,
+                    0.8
+                );
+                sectionPointLight.position.set(0, 0, 10);
+                sectionScene.add(sectionPointLight);
+                
+                sectionCamera.position.z = 18;
+                
+               
+                function sectionAnimate() {
+                    requestAnimationFrame(sectionAnimate);
+                    
+                  
+                    const positions = sectionParticles.attributes.position.array;
+                    for (let i = 0; i < sectionParticleCount; i++) {
+                        const i3 = i * 3;
+                        positions[i3 + 1] += Math.sin(time + i * 0.01) * 0.02;
+                    }
+                    sectionParticles.attributes.position.needsUpdate = true;
+                    
+                   
+                    flowShapes.forEach((shape, index) => {
+                        const offset = index / flowShapeCount;
+                        shape.rotation.x += 0.001 + offset * 0.002;
+                        shape.rotation.y += 0.002 + offset * 0.001;
+                        
+                        const angle = time * 0.3 + offset * Math.PI * 2;
+                        const radius = 10 + Math.sin(time + offset * 5) * 4;
+                        shape.position.x = Math.cos(angle) * radius;
+                        shape.position.z = Math.sin(angle) * radius;
+                        shape.position.y = Math.sin(time * 1.5 + offset * 8) * 3;
+                        
+                      
+                        const scale = 1 + Math.sin(time * 2 + offset * 15) * 0.2;
+                        shape.scale.setScalar(scale);
+                    });
+                    
+                
+                    sectionCamera.position.x += (mouseX * 2 - sectionCamera.position.x) * 0.03;
+                    sectionCamera.position.y += (mouseY * 2 - sectionCamera.position.y) * 0.03;
+                    sectionCamera.position.z = 18 + Math.sin(time * 0.2) * 3;
+                    
+                    sectionRenderer.render(sectionScene, sectionCamera);
+                }
+                
+                sectionAnimate();
+            }
+            
+        
+            createSectionBackground('about', 'blue');
+            createSectionBackground('projects', 'green');
+            createSectionBackground('contact', 'purple');
+            
+           
+            function createFooterBackground() {
+                const footer = document.querySelector('footer');
+                if (!footer) return;
+                
+                const footerScene = new THREE.Scene();
+                const footerCamera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+                const footerRenderer = new THREE.WebGLRenderer({ 
+                    alpha: true, 
+                    antialias: true 
+                });
+                footerRenderer.setSize(window.innerWidth, window.innerHeight);
+                footerRenderer.setPixelRatio(window.devicePixelRatio);
+                
+                const footerContainer = document.createElement('div');
+                footerContainer.id = 'footer-background';
+                footerContainer.style.position = 'absolute';
+                footerContainer.style.top = '0';
+                footerContainer.style.left = '0';
+                footerContainer.style.width = '100%';
+                footerContainer.style.height = '100%';
+                footerContainer.style.zIndex = '0';
+                footerContainer.appendChild(footerRenderer.domElement);
+                footer.appendChild(footerContainer);
+                
+               
+                const footerParticleCount = 1500;
+                const footerParticles = new THREE.BufferGeometry();
+                const footerPositions = new Float32Array(footerParticleCount * 3);
+                const footerColors = new Float32Array(footerParticleCount * 3);
+                
+                for (let i = 0; i < footerParticleCount; i++) {
+                    const i3 = i * 3;
+                    const radius = Math.random() * 30 + 10;
+                    const angle = Math.random() * Math.PI * 2;
+                    
+                    footerPositions[i3] = Math.cos(angle) * radius;
+                    footerPositions[i3 + 1] = (Math.random() - 0.5) * 20;
+                    footerPositions[i3 + 2] = Math.sin(angle) * radius;
+                    
+                    footerColors[i3] = 0.4 + Math.random() * 0.4;
+                    footerColors[i3 + 1] = 0.5 + Math.random() * 0.3;
+                    footerColors[i3 + 2] = 0.7 + Math.random() * 0.3;
+                }
+                
+                footerParticles.setAttribute('position', new THREE.BufferAttribute(footerPositions, 3));
+                footerParticles.setAttribute('color', new THREE.BufferAttribute(footerColors, 3));
+                
+                const footerParticleMaterial = new THREE.PointsMaterial({
+                    size: 0.03,
+                    vertexColors: true,
+                    blending: THREE.AdditiveBlending,
+                    transparent: true,
+                    opacity: 0.6
+                });
+                
+                const footerParticleSystem = new THREE.Points(footerParticles, footerParticleMaterial);
+                footerScene.add(footerParticleSystem);
+                
+              
+                const footerShapes = [];
+                const footerShapeCount = 6;
+                
+                for (let i = 0; i < footerShapeCount; i++) {
+                    const geometry = i % 3 === 0 ? new THREE.IcosahedronGeometry(0.5, 1) :
+                                    i % 3 === 1 ? new THREE.TetrahedronGeometry(0.7, 0) :
+                                    new THREE.OctahedronGeometry(0.6, 1);
+                    
+                    const material = new THREE.MeshPhongMaterial({
+                        color: new THREE.Color(0.3 + Math.random() * 0.4, 0.4 + Math.random() * 0.4, 0.6 + Math.random() * 0.4),
+                        emissive: new THREE.Color(0.1, 0.2, 0.4),
+                        emissiveIntensity: 0.2,
+                        transparent: true,
+                        opacity: 0.3,
+                        wireframe: true
+                    });
+                    
+                    const shape = new THREE.Mesh(geometry, material);
+                    const angle = (i / footerShapeCount) * Math.PI * 2;
+                    const radius = 12 + Math.sin(i * 2) * 5;
+                    
+                    shape.position.set(
+                        Math.cos(angle) * radius,
+                        Math.sin(i * 1.5) * 6,
+                        Math.sin(angle) * radius
+                    );
+                    
+                    footerScene.add(shape);
+                    footerShapes.push(shape);
+                }
+                
+                const footerAmbientLight = new THREE.AmbientLight(0xffffff, 0.1);
+                footerScene.add(footerAmbientLight);
+                
+                const footerPointLight = new THREE.PointLight(0x4a90e2, 0.6);
+                footerPointLight.position.set(0, 0, 15);
+                footerScene.add(footerPointLight);
+                
+                footerCamera.position.z = 20;
+            
+                function footerAnimate() {
+                    requestAnimationFrame(footerAnimate);
+                    
+                   
+                    const positions = footerParticles.attributes.position.array;
+                    for (let i = 0; i < footerParticleCount; i++) {
+                        const i3 = i * 3;
+                        positions[i3 + 1] += Math.sin(time + i * 0.02) * 0.01;
+                    }
+                    footerParticles.attributes.position.needsUpdate = true;
+                    
+                   
+                    footerShapes.forEach((shape, index) => {
+                        const offset = index / footerShapeCount;
+                        shape.rotation.x += 0.001 + offset * 0.002;
+                        shape.rotation.y += 0.002 + offset * 0.001;
+                        
+                        const angle = time * 0.2 + offset * Math.PI * 2;
+                        const radius = 12 + Math.sin(time + offset * 7) * 5;
+                        shape.position.x = Math.cos(angle) * radius;
+                        shape.position.z = Math.sin(angle) * radius;
+                        shape.position.y = Math.sin(time * 0.8 + offset * 10) * 4;
+                        
+                        const scale = 1 + Math.sin(time * 1.5 + offset * 20) * 0.4;
+                        shape.scale.setScalar(scale);
+                    });
+                    
+                   
+                    footerCamera.position.x += (mouseX * 1 - footerCamera.position.x) * 0.02;
+                    footerCamera.position.y += (mouseY * 1 - footerCamera.position.y) * 0.02;
+                    footerCamera.position.z = 20 + Math.sin(time * 0.1) * 4;
+                    
+                    footerRenderer.render(footerScene, footerCamera);
+                }
+                
+                footerAnimate();
+            }
+            
+            createFooterBackground();
+        });
+    </script>
 </body>
 </html>
